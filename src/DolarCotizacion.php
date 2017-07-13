@@ -1,10 +1,7 @@
 <?php 
 namespace MisClases;
 
-require_once "db.php";
 
-
-//class ORM
 class DolarCotizacion
 {
     const API = 'http://ws.geeklab.com.ar/dolar/get-dolar-json.php';
