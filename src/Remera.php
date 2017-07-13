@@ -5,6 +5,7 @@ namespace MisClases;
 require_once "Image.php";
 require_once "DolarCotizacion.php";
 
+
 class Remera
 {
     protected $id;
@@ -15,28 +16,30 @@ class Remera
     protected $image;
     protected $talle;
     protected $color;
+    protected $DolarCotizacion;
 
 
     public function __construct($id, $nombre, $description, $link, $image, 
-                                $talle, $color, $precio)
+                                $talle, $color, $precio, 
+                                DolarCotizacion $DolarCotizacion)
     {
         $this->id = $id;
         $this->nombre = $nombre;
         $this->description = $description;
         $this->link = $link;
-        $this->precio = $precio;
         $this->image = $image;
         $this->talle = $talle;
         $this->color = $color;
+        $this->precio = $precio;
+        $this->DolarCotizacion = $DolarCotizacion;
     }
 
 
-    public function showRow($directorio)
+    private function showRow($directorio)
     {
         $img = new Image();
         $img->setDirectorio($directorio);
         $img->setFileName($this->image);
-        $dolar = new DolarCotizacion();
         $out = sprintf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%d</td></tr>",
             $this->id,
             $this->nombre,
@@ -45,7 +48,7 @@ class Remera
             $img->getImg(),
             $this->talle,
             $this->color,
-            $dolar->ConvertirOficial($this->precio)
+            $this->DolarCotizacion->ConvertirOficial($this->precio)
         );
         return $out;
     }
@@ -64,7 +67,7 @@ class Remera
         $img->getImg(),
         $this->talle,
         $this->color,
-        $this->precio,
+        $this->DolarCotizacion->ConvertirOficial($this->precio),
         "<a href='editar_remera.php?id=" . $this->id . "'>Editar</a>",
         "<a href='eliminar_remera.php?id=" . $this->id . "'>Eliminar</a>");
         return $out;
