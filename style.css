@@ -1,0 +1,42 @@
+body {
+	padding: 0 20px;
+	background-color:Azure ;
+}
+header, footer {
+  text-align: center;
+  background-color:yellow;
+  width: 100%;
+  margin: 0 auto;
+}
+
+header h1 {
+  color:green;
+}
+
+h3 {
+  color:green;
+}
+
+table.Tabla tr:nth-child(even) td{ background: #ddd;}
+table.Tabla tr:nth-child(odd) td{background: #fff;}
+table.Tabla tr:nth-child(1) td {
+	  color:green;
+	  background:yellow;
+	}
+
+
+nav ul {
+	display: inline-flex;
+	text-decoration: none;
+}
+nav ul li {
+	margin:0 20px;
+	border: 1px solid gray;
+	background-color: black;
+	color: white;
+	list-style: none;
+}
+nav ul li a {
+	color:white;
+	text-decoration: none;
+}
