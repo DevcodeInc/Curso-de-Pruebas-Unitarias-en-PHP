@@ -4,7 +4,7 @@ body {
 }
 header, footer {
   text-align: center;
-  background-color:yellow;
+  background-color:red;
   width: 100%;
   margin: 0 auto;
 }
