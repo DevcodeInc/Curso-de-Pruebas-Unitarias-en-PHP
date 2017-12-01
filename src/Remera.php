@@ -15,10 +15,11 @@ class Remera
     protected $image;
     protected $talle;
     protected $color;
+    protected $dolarCotizacion;
 
 
     public function __construct($id, $nombre, $description, $link, $image, 
-                                $talle, $color, $precio)
+                                $talle, $color, $precio, DolarCotizacion $dolarCotizacion )
     {
         $this->id = $id;
         $this->nombre = $nombre;
@@ -28,6 +29,7 @@ class Remera
         $this->image = $image;
         $this->talle = $talle;
         $this->color = $color;
+	    $this->dolarCotizacion = $dolarCotizacion;
     }
 
 
@@ -37,7 +39,7 @@ class Remera
         $img->setDirectorio($directorio);
         $img->setFileName($this->image);
         $dolar = new DolarCotizacion();
-        $out = sprintf("<tr><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%d</td></tr>",
+        $out = sprintf("<tr><td>%d</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td><td>%s</td></tr>",
             $this->id,
             $this->nombre,
             $this->description,
@@ -45,7 +47,7 @@ class Remera
             $img->getImg(),
             $this->talle,
             $this->color,
-            $dolar->ConvertirOficial($this->precio)
+            $this->dolarCotizacion->ConvertirOficial($this->precio)
         );
         return $out;
     }

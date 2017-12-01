@@ -24,21 +24,30 @@ final class RemeraTest extends TestCase
 	const DIRECTORIO = 'DIRECTORIO/';
 
 
+	/*
+	 * @covers MisClases\dolarCotizacion::__construct
+	 * @covers MisClases\Image::__construct
+	 * @covers MisClases\Image::getImg
+	 * @covers MisClases\Image::getUrl
+	 * @covers MisClases\Image::setDirectorio
+	 * @covers MisClases\Image::setFileName
+	 */
 	public function testShowRow()
 	{
 		$mockDolarCotizacion = $this->getMockBuilder(
 			MisClases\DolarCotizacion::class)
-			->setMethods(['ConvertirOficial'])
+            ->disableOriginalConstructor()
+			->setMethods(array('ConvertirOficial'))
 			->getMock();
 		
-		$mockDolarCotizacion
+		$mockDolarCotizacion->expects($this->any())
 		    ->method('ConvertirOficial')
 		    ->with(10)
-    		->willReturn($this->returnValue(150));
+    		->will($this->returnValue('150'));
 
        	$remera = new MisClases\Remera('1', 'Pequeña', 'Una remera pequeña',
 				'1', '1.jpg', 's', 'rojo', 10, $mockDolarCotizacion);
-    	$resultado = "<tr><td>1</td><td>Pequeña</td><td>Una remera pequeña</td><td><a href='1'>1</a></td><td><img src=\"https://http://local.poo.com/DIRECTORIO/1.jpg\" height='120'width='120' ></img></td><td>s</td><td>rojo</td><td>178</td></tr>";
+    	$resultado = "<tr><td>1</td><td>Pequeña</td><td>Una remera pequeña</td><td><a href='1'>1</a></td><td><img src=\"https://http://local.poo.com/DIRECTORIO/1.jpg\" height='120'width='120' ></img></td><td>s</td><td>rojo</td><td>150</td></tr>";
 		
 		$this->assertEquals($remera->showRow(self::DIRECTORIO), $resultado);
 	}
