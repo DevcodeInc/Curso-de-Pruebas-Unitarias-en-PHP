@@ -1,6 +1,4 @@
 <?php
-declare(strict_types=1);
-
 use \PHPUnit\Framework\TestCase;
 
 require_once "src/Remera.php";
@@ -25,7 +23,8 @@ final class RemeraTest extends TestCase
 
 
 	/*
-	 * @covers MisClases\dolarCotizacion::__construct
+     * @covers MisClases\remera::showRow
+	 * @covers MisClases\DolarCotizacion::__construct
 	 * @covers MisClases\Image::__construct
 	 * @covers MisClases\Image::getImg
 	 * @covers MisClases\Image::getUrl
@@ -40,7 +39,7 @@ final class RemeraTest extends TestCase
 			->setMethods(array('ConvertirOficial'))
 			->getMock();
 		
-		$mockDolarCotizacion->expects($this->any())
+		$mockDolarCotizacion->expects($this->once())
 		    ->method('ConvertirOficial')
 		    ->with(10)
     		->will($this->returnValue('150'));
